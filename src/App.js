@@ -55,34 +55,33 @@ class App extends Component {
 
   componentDidMount() {
     console.log("********* componentDidMount **************");
-    // fetch("https://curriculum-api.codesmith.io/messages")
-    //   // fetch("http://slack-server.elasticbeanstalk.com/calendar/NY/18/")
-    //   .then((data) => data.json())
-    //   .then((messages) => {
-    //     console.log(messages);
-    //     this.appendMessages(messages);
-    //   });
+    fetch("https://curriculum-api.codesmith.io/messages")
+      // fetch("http://slack-server.elasticbeanstalk.com/calendar/NY/18/")
+      .then((data) => data.json())
+      .then((messages) => {
+        console.log(messages);
+        this.appendMessages(messages);
+    });
 
-    // const ourComponent = this;
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
-        // get a JSON object from the response text body which should be urls
-        const json = JSON.parse(this.responseText);
-        // set state based on our json object
-        // ourComponent.setState({ urls: json });
-        console.log(`json = ${JSON.stringify(json)}`);
-      }
-    };
-    xhttp.open(
-      "GET",
-      "http://slack-server.elasticbeanstalk.com/calendar/NY/18/"
-    ); // starts the creating of the request
-    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*"); // this header set fixes CORS error
-    xhttp.send(); // sends request
-  }
+  //   const xhttp = new XMLHttpRequest();
+  //   xhttp.onreadystatechange = function () {
+  //     if (this.readyState === 4 && this.status === 200) {
+  //       // get a JSON object from the response text body which should be urls
+  //       const json = JSON.parse(this.responseText);
+  //       // set state based on our json object
+  //       // ourComponent.setState({ urls: json });
+  //       console.log(`json = ${JSON.stringify(json)}`);
+  //     }
+  //   };
+  //   xhttp.open(
+  //     "GET",
+  //     "http://slack-server.elasticbeanstalk.com/calendar/NY/18/"
+  //   ); // starts the creating of the request
+  //   xhttp.setRequestHeader("Access-Control-Allow-Origin", "*"); // this header set fixes CORS error
+  //   xhttp.send(); // sends request
+  // }
 
-  // append data
+  // For now since Calendar NY 18 is down will use hardcoded data to test.
   appendMessages(messages) {
     const calMessages = [];
     let calObj = {
@@ -139,7 +138,6 @@ class App extends Component {
       `************* appendMessages - ${JSON.stringify(calMessages)}`
     );
     this.setState({ calendar: calMessages });
-
     return calMessages;
   }
 }
